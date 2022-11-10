@@ -9,7 +9,7 @@ import { BoardRepository } from './board.repository';
 @Injectable()
 export class BoardsService {
   constructor(
-    @Inject('BOARD_REPOSITORY') //이렇게 해줘서 이제 서비스에서 리파지토리를 쓸 수 있다. this.boardrepo하면 되겠지?
+    @Inject('BOARD_REPOSITORY')
     private boardRepository: BoardRepository,
   ) {} //컨스트럭터에 프라이빗으로 값을 넣으면 선언한것과 같이 취급하기때문에 위에서 따로 선언안해도 됨.
 
