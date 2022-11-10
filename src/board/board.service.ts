@@ -1,15 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { BoardStatus } from './board-status.enum';
-import { v1 as uuid } from 'uuid';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { NotFoundException } from '@nestjs/common/exceptions/not-found.exception';
 import { Board } from './board.entity';
 import { BoardRepository } from './board.repository';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class BoardsService {
   constructor(
-    @Inject('BOARD_REPOSITORY')
+    @InjectRepository(Board)
     private boardRepository: BoardRepository,
   ) {} //컨스트럭터에 프라이빗으로 값을 넣으면 선언한것과 같이 취급하기때문에 위에서 따로 선언안해도 됨.
 
