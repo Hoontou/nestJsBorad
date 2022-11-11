@@ -19,7 +19,7 @@ export class BoardStatusValidationPipe implements PipeTransform {
       throw new BadRequestException(`${value} isnt tin the status options`);
     } // 네스트 내장된 err뱉는함수이다.
 
-    return value;
+    return value; //이렇게하면 컨트롤러에는 Uppercase로 전환된 결과가 날라감.
   }
 
   //StatusOptions에 없는 인자가 indexOf에 담기면 -1을 뱉어낸다.
