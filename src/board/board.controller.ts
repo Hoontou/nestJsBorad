@@ -10,10 +10,7 @@ import { BoardsRepository } from './board.repository';
 
 @Controller('board')
 export class BoardsController {
-  constructor(
-    private boardsService: BoardsService,
-    private boardRepository: BoardsRepository,
-  ) {}
+  constructor(private boardsService: BoardsService) {}
 
   @Get()
   getAllBoards(): Promise<Board[]> {
@@ -23,7 +20,7 @@ export class BoardsController {
   @Post()
   @UsePipes(ValidationPipe)
   createBoard(@Body() createBoardDto: CreateBoardDto): Promise<Board> {
-    return this.boardRepository.createBoard(createBoardDto);
+    return this.boardsService.createBoard(createBoardDto);
   }
 
   @Get('/:id')

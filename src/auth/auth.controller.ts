@@ -1,20 +1,15 @@
 import { Controller, Body, Post } from '@nestjs/common';
-import { Board } from 'src/board/board.entity';
-import { UsePipes } from '@nestjs/common/decorators';
-import { CreateBoardDto } from 'src/board/dto/create-board.dto';
-import { BoardsRepository } from '../board/board.repository';
 import { AuthService } from './auth.service';
-import { ValidationPipe } from '@nestjs/common/pipes';
+import { AuthCredentialsDto } from './dto/auth-credential.dto';
+import { User } from './user.entitiy';
 
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private AuthService: AuthService,
-    private boardRepository: BoardsRepository,
-  ) {}
+  constructor(private authService: AuthService) {}
 
-  @Post()
-  createBoard() {
-    return this.boardRepository.db.delete(8);
+  @Post('/signup')
+  signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<User> {
+    console.log('C');
+    return this.authService.signUp(authCredentialsDto);
   }
 }
